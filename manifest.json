@@ -5,14 +5,16 @@
   "description": "This extension lets you quickly navigate to the tab that has media playing",
   "version": "0.1",
 
+
+  "icons": {
+    "38": "images/computer_38.png",
+    "128": "images/computer_128.png" },
   "browser_action": {
-    "icons": {
-      "38": "images/computer_38.png",
-      "128": "images/computer_128.png" }
+    "default_title": "Mute audio"
   },
   "background": {
     "scripts": ["js/eventPage.js"],
-    "persistent": false
+    "persistent": true
   },
   "permissions": [
     "tabs"
