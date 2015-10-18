@@ -13,7 +13,7 @@
     "default_title": "Mute audio"
   },
   "background": {
-    "scripts": ["js/eventPage.js"],
+    "scripts": [ "js/chrome-promise.js", "js/eventPage.js"],
     "persistent": true
   },
   "permissions": [
