@@ -1,6 +1,7 @@
 /**
  * Created by wwymak on 15/10/2015.
  */
+chrome.promise = new ChromePromise();
 
 chrome.browserAction.onClicked.addListener(tabsQuery);
 
@@ -19,6 +20,31 @@ function tabsQuery(){
                 //muted: true
             })
         })
+
+    })
+
+    findAudibleTabs().then(function(data){
+        console.log(data);
+    })
+}
+/**
+ * grabbing info about any tab that has sound playing and returngin a promise with the data
+ * @returns {*} promise about the tabid and windowID for chaining
+ */
+function findAudibleTabs(){
+    return chrome.promise.tabs.query({audible: true}).then(function(tabs){
+        var promises = tabs.map(function(tab) {
+            return {windowID: tab.windowId, tabID: tab.id}
+        });
+
+        return Promise.all(promises);
+    })
+}
+
+
+
+function getCurrTabWindowPromise(){
+    chrome.promise.tabs.getCurrent().then(function(tab){
 
     })
 }
