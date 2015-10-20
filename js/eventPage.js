@@ -26,6 +26,11 @@ function tabsQuery(){
     findAudibleTabs().then(function(data){
         console.log(data);
     })
+
+    getCurrTabWindowPromise().then(function(data){
+        console.log(data)
+    })
+
 }
 /**
  * grabbing info about any tab that has sound playing and returngin a promise with the data
@@ -44,9 +49,17 @@ function findAudibleTabs(){
 
 
 function getCurrTabWindowPromise(){
-    chrome.promise.tabs.getCurrent().then(function(tab){
+    return chrome.promise.tabs.query({currentWindow: true, active: true}).then(function(tabs) {
+        var promises = tabs.map(function (tab) {
+            return {windowID: tab.windowId, tabID: tab.id, tabIndex: tab.index}
+        });
 
+        return Promise.all(promises);
     })
+}
+
+function moveTabs(tabArr, windowID, i){
+    chrome.promise.tabs.move(tabArr, {windowId: windowID, index: i})
 }
 
 function checkCurrTabWindow(audibleTabWindowID, callback){
