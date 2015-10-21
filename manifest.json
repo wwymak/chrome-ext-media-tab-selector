@@ -4,7 +4,7 @@
   "name": "Audio stopper",
   "description": "This extension lets you quickly navigate to the tab that has media playing",
   "version": "0.1",
-
+  "minimum_chrome_version": "45",
 
   "icons": {
     "38": "images/computer_38.png",
