@@ -9,13 +9,11 @@ chrome.promise = new ChromePromise();
 chrome.browserAction.onClicked.addListener(tabsQuery);
 
 function tabsQuery(){
-    console.log("tabs query")
 
     var p1 = findAudibleTabs(),
         p2 = getCurrTabWindowPromise();
 
     Promise.all([p1, p2]).then(function(values) {
-        console.log(values); // [audible tab array, current tab window data, move]
         var audibleTabArry = [];
         values[0].forEach(function(d){
             audibleTabArry.push(d.tabID)
@@ -23,7 +21,6 @@ function tabsQuery(){
         moveTabs(audibleTabArry, values[1][0].windowID, (values[1][0].tabIndex + 1))
 
         chrome.tabs.query({audible: true}, function(tabs) {
-            console.log(tabs)
             //check if tab window id = current window Id
             //if yes higghlihgt the tab
             //if not-- tabs.move to current window, then hightlihgt

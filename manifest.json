@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "Audio stopper",
+  "name": "Media tab selector",
   "description": "This extension lets you quickly navigate to the tab that has media playing",
-  "version": "0.1",
+  "version": "0.3",
   "minimum_chrome_version": "45",
 
   "icons": {
@@ -14,7 +14,7 @@
   },
   "background": {
     "scripts": [ "js/chrome-promise.js", "js/eventPage.js"],
-    "persistent": true
+    "persistent": false
   },
   "permissions": [
     "tabs"
